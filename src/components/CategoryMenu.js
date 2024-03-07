@@ -28,7 +28,7 @@ export default function CategoryMenu() {
     <Menu
       as="div"
       dir={dir}
-      className="fixed ltr:right-1 rtl:left-1 rtl:md:left-5 top-5 ltr:md:right-5 inline-block ltr:text-left rtl:text-righst z-10"
+      className="fixed ltr:right-4 rtl:left-4 rtl:md:left-5 top-5 ltr:md:right-5 inline-block ltr:text-left rtl:text-righst z-10"
     >
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
@@ -6,33 +5,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 import Languages from "@/components/Languages"
 import useLanguage from "@/hooks/useLanguage"
 import Category from "@/components/Category"
-
-import { faker, fakerAR } from "@faker-js/faker"
-
-const categories = []
-
-for (let index = 0; index < 6; index++) {
-  const items = []
-
-  for (let idx = 0; idx < 21; idx++) {
-    items.push({
-      price: 12000,
-      image: faker.image.urlLoremFlickr({ category: "food" }),
-      arabicName: fakerAR.person.firstName(),
-      arabicDesc: fakerAR.commerce.productDescription(),
-      englishName: faker.person.firstName(),
-      kurdishName: fakerAR.person.firstName(),
-      englishDesc: faker.commerce.productDescription(),
-      kurdishDesc: fakerAR.commerce.productDescription(),
-    })
-  }
-  categories.push({
-    items,
-    english: faker.person.firstName(),
-    arabic: fakerAR.person.firstName(),
-    kurdish: fakerAR.person.firstName(),
-  })
-}
+import useData from "@/hooks/useData"
+import ImageList from "@/components/ImageList"
 
 const files = [
   {
@@ -74,8 +48,10 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(null)
 
+  const categories = useData()
+
   const [_, { dir }] = useLanguage()
-  console.log(categories)
+
   return (
     <main
       dir={dir}
@@ -83,39 +59,12 @@ export default function Home() {
     >
       <Languages />
 
-      <Category label="kodo" />
-      <ul
-        role="list"
-        className="grid px-3 grid-cols-2 gap-x-4 gap-y-8 m-5 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
-      >
-        {files.map((file) => (
-          <li key={file.source} className="relative ">
-            <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-              <img
-                alt="food"
-                src={file.source}
-                className=" pointer-events-none object-cover min-h-full group-hover:opacity-75"
-              />
-              <button
-                type="button"
-                className="absolute inset-0 focus:outline-none"
-                onClick={() => {
-                  setSelected(file.id)
-                  setOpen(true)
-                }}
-              >
-                <span className="sr-only">View details for {file.title}</span>
-              </button>
-            </div>
-            <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">
-              {file.title}
-            </p>
-            <p className="pointer-events-none block text-sm font-medium text-gray-500">
-              {file.price}
-            </p>
-          </li>
-        ))}
-      </ul>
+      {categories.map(({ items, label, key }) => (
+        <section className="w-full" key={key}>
+          <Category label={label} />
+          <ImageList items={items} />
+        </section>
+      ))}
       {/* side-overlay */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -153,7 +102,7 @@ export default function Home() {
                           <div className="ml-3 flex h-7 items-center">
                             <button
                               type="button"
-                              className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                              className="relative rounded-md bg-white text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                               onClick={() => setOpen(false)}
                             >
                               <span className="absolute -inset-2.5" />

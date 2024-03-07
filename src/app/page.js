@@ -7,6 +7,7 @@ import Languages from "@/components/Languages"
 import useLanguage from "@/hooks/useLanguage"
 import ImageList from "@/components/ImageList"
 import SidebarDialog from "@/components/SidebarDialog"
+import CategoryMenu from "@/components/CategoryMenu"
 
 export default function Home() {
   const [selected, setSelected] = useState(null)
@@ -22,9 +23,11 @@ export default function Home() {
     >
       <Languages />
 
+      <CategoryMenu />
+
       {categories.map(({ items, label, key }) => (
         <section className="w-full" key={key}>
-          <Category label={label} />
+          <Category id={key} label={label} />
           <ImageList setSelected={setSelected} items={items} />
         </section>
       ))}

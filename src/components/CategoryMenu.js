@@ -59,7 +59,9 @@ export default function CategoryMenu() {
               <Menu.Item key={key}>
                 <span
                   onClick={() => scrollToSection(key)}
-                  className={"block px-4 py-2 text-sm text-gray-700"}
+                  className={
+                    "block cursor-pointer px-4 py-2 text-sm text-gray-700"
+                  }
                 >
                   {label}
                 </span>

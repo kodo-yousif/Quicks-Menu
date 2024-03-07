@@ -1,14 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useEffect, useState } from "react"
+import { PhotoProvider, PhotoView } from "react-photo-view"
 
+import useLanguage from "@/hooks/useLanguage"
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
-import useLanguage from "@/hooks/useLanguage"
+
+import "react-photo-view/dist/react-photo-view.css"
 
 export default function SidebarDialog({ item, setSelected }) {
   const [localItem, setLocalItem] = useState(item)
 
-  const [_, { dir }] = useLanguage()
+  const [_, { dir, value }] = useLanguage()
 
   useEffect(() => {
     if (item) setLocalItem(item)
@@ -32,7 +35,6 @@ export default function SidebarDialog({ item, setSelected }) {
         >
           <div className="fixed inset-0 backdrop-blur-sm bg-white/15 transition-opacity" />
         </Transition.Child>
-
         <div className="fixed inset-0">
           <div className="absolute inset-0">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-0">
@@ -70,11 +72,22 @@ export default function SidebarDialog({ item, setSelected }) {
                         <div className="pb-1 sm:pb-6">
                           <div>
                             <div className="relative h-[300px]">
-                              <img
-                                alt="food image"
-                                src={localItem?.image}
-                                className="absolute h-full w-full object-cover"
-                              />
+                              <PhotoProvider>
+                                <PhotoView src={localItem?.image}>
+                                  <img
+                                    alt="food image"
+                                    src={localItem?.image}
+                                    className="absolute h-full w-full object-cover"
+                                  />
+                                </PhotoView>
+                              </PhotoProvider>
+                              <span className="absolute bg-white text-gray-700 rounded px-2 shadow right-4 bottom-4">
+                                {value === "english" && "Click image to expand"}
+                                {value === "arabic" &&
+                                  "انقر على الصورة للتوسيع"}
+                                {value === "kurdish" &&
+                                  "بۆ زیاتر بینین کلیک لەسەر وێنەکە بکە"}
+                              </span>
                             </div>
                             <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
                               <div className="sm:flex-1">

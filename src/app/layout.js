@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" type="image/jpg" sizes="any" />
       </head>
-      <Suspense>
-        <body className={inter.className}>{children}</body>
-      </Suspense>
+      <body className={inter.className}>
+        <Suspense>{children}</Suspense>
+      </body>
     </html>
   )
 }

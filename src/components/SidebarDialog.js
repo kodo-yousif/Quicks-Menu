@@ -46,7 +46,7 @@ export default function SidebarDialog({ item, setSelected }) {
                 leave="transform transition ease-in-out duration-500"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col bg-red-600 py-6 shadow-xl">
+                  <div className="flex h-full flex-col py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
@@ -56,7 +56,7 @@ export default function SidebarDialog({ item, setSelected }) {
                           <button
                             type="button"
                             onClick={() => setSelected(null)}
-                            className="relative rounded-md bg-green-600 text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="relative rounded-md text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             <span className="absolute -inset-2.5" />
                             <span className="sr-only">Close panel</span>
@@ -73,7 +73,7 @@ export default function SidebarDialog({ item, setSelected }) {
                               <img
                                 alt="food image"
                                 src={localItem?.image}
-                                className="absolute h-full w-full object-cover"
+                                className="absolute !h-full w-full object-cover"
                               />
                             </div>
                             <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">

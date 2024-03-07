@@ -6,7 +6,7 @@ import useLanguage from "@/hooks/useLanguage"
 import { languages, urlLangKey } from "@/constants"
 
 export default function Languages() {
-  const lang = useLanguage()
+  const [lang] = useLanguage()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -15,7 +15,7 @@ export default function Languages() {
 
   return (
     <div dir="ltr">
-      <div className="block">
+      <div className="block mt-3">
         <nav
           aria-label="languages"
           className="isolate flex divide-x divide-gray-200 rounded-lg shadow"

@@ -6,9 +6,8 @@ export default function useLanguage() {
 
   const urlLanguage = searchParams.get(urlLangKey) || "english"
 
-  const selectedLang = languages.some((tab) => tab.value === urlLanguage)
-    ? urlLanguage
-    : languages[0].value
+  const selectedLang =
+    languages.find((tab) => tab.value === urlLanguage) || languages[0]
 
-  return selectedLang
+  return [selectedLang.value, selectedLang]
 }

@@ -1,7 +1,7 @@
 const languages = [
-  { value: "english", label: "English" },
-  { value: "arabic", label: "العربية" },
-  { value: "kurdish", label: "کوردی" },
+  { value: "english", label: "English", dir: "ltr" },
+  { value: "arabic", label: "العربية", dir: "rtl" },
+  { value: "kurdish", label: "کوردی", dir: "rtl" },
 ]
 
 const urlLangKey = "language"

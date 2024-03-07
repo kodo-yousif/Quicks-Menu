@@ -1,16 +1,38 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
-import Image from "next/image"
 import { Fragment, useState } from "react"
-import { Dialog, Menu, Transition } from "@headlessui/react"
+import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
-import {
-  EllipsisVerticalIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/20/solid"
 import Languages from "@/components/Languages"
-import classNames from "@/util/classNames"
+import useLanguage from "@/hooks/useLanguage"
+import Category from "@/components/Category"
 
-const lans = [{ lan: "en" }, { lan: "ku" }, { lan: "ar" }]
+import { faker, fakerAR } from "@faker-js/faker"
+
+const categories = []
+
+for (let index = 0; index < 6; index++) {
+  const items = []
+
+  for (let idx = 0; idx < 21; idx++) {
+    items.push({
+      price: 12000,
+      image: faker.image.urlLoremFlickr({ category: "food" }),
+      arabicName: fakerAR.person.firstName(),
+      arabicDesc: fakerAR.commerce.productDescription(),
+      englishName: faker.person.firstName(),
+      kurdishName: fakerAR.person.firstName(),
+      englishDesc: faker.commerce.productDescription(),
+      kurdishDesc: fakerAR.commerce.productDescription(),
+    })
+  }
+  categories.push({
+    items,
+    english: faker.person.firstName(),
+    arabic: fakerAR.person.firstName(),
+    kurdish: fakerAR.person.firstName(),
+  })
+}
 
 const files = [
   {
@@ -50,73 +72,28 @@ const files = [
 
 export default function Home() {
   const [open, setOpen] = useState(false)
-  const [lang, setLang] = useState(lans[0].lan)
   const [selected, setSelected] = useState(null)
+
+  const [_, { dir }] = useLanguage()
+  console.log(categories)
   return (
-    // to add animation when dir change use this  transition duration-300 ease-in-out ${lang != "en" ? 'transform scale-x-[-1]' : ''}
     <main
-      dir={lang == "en" ? "ltr" : "rtl"}
-      className={`flex min-h-screen flex-col items-center p-3 text-black`}
+      dir={dir}
+      className="flex select-none min-h-screen flex-col items-center text-black"
     >
       <Languages />
-      <Menu
-        as="div"
-        className="fixed right-1 top-5 md:right-5 inline-block text-left z-10"
-      >
-        <div>
-          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            {lang}
-            <ChevronDownIcon
-              className="-mr-1 h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-          </Menu.Button>
-        </div>
 
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-16 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-              {lans.map((lan) => (
-                <Menu.Item key={lan}>
-                  {({ active }) => (
-                    <span
-                      onClick={() => setLang(lan.lan)}
-                      className={classNames(
-                        lan.lan == lang
-                          ? "bg-gray-100 text-gray-900"
-                          : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      {lan?.lan}
-                    </span>
-                  )}
-                </Menu.Item>
-              ))}
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
-
-      {/* gallery */}
+      <Category label="kodo" />
       <ul
         role="list"
-        className="grid grid-cols-2 gap-x-4 gap-y-8 m-5 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
+        className="grid px-3 grid-cols-2 gap-x-4 gap-y-8 m-5 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
       >
         {files.map((file) => (
           <li key={file.source} className="relative ">
             <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
               <img
+                alt="food"
                 src={file.source}
-                alt=""
                 className=" pointer-events-none object-cover min-h-full group-hover:opacity-75"
               />
               <button

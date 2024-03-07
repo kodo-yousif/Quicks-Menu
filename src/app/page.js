@@ -1,5 +1,5 @@
 "use client"
-import { useState, Suspense } from "react"
+import { useState } from "react"
 
 import useData from "@/hooks/useData"
 import Category from "@/components/Category"
@@ -16,21 +16,19 @@ export default function Home() {
   const [_, { dir }] = useLanguage()
 
   return (
-    <Suspense>
-      <main
-        dir={dir}
-        className="flex select-none min-h-screen flex-col items-center text-black"
-      >
-        <Languages />
+    <main
+      dir={dir}
+      className="flex select-none min-h-screen flex-col items-center text-black"
+    >
+      <Languages />
 
-        {categories.map(({ items, label, key }) => (
-          <section className="w-full" key={key}>
-            <Category label={label} />
-            <ImageList setSelected={setSelected} items={items} />
-          </section>
-        ))}
-        <SidebarDialog item={selected} setSelected={setSelected} />
-      </main>
-    </Suspense>
+      {categories.map(({ items, label, key }) => (
+        <section className="w-full" key={key}>
+          <Category label={label} />
+          <ImageList setSelected={setSelected} items={items} />
+        </section>
+      ))}
+      <SidebarDialog item={selected} setSelected={setSelected} />
+    </main>
   )
 }

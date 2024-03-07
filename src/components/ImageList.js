@@ -12,7 +12,7 @@ export default function ImageList({ items, setSelected }) {
             <img
               alt="food"
               src={item.image}
-              className=" pointer-events-none object-cover min-h-full"
+              className=" pointer-events-none object-cover h-full"
             />
             <button
               type="button"

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-export default function ImageList({ items }) {
+export default function ImageList({ items, setSelected }) {
   return (
     <ul
       role="list"
@@ -16,11 +16,8 @@ export default function ImageList({ items }) {
             />
             <button
               type="button"
+              onClick={() => setSelected(item)}
               className="absolute rounded-t-lg inset-0 focus:outline-none"
-              // onClick={() => {
-              //   setSelected(file.id)
-              //   setOpen(true)
-              // }}
             />
           </div>
           <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">

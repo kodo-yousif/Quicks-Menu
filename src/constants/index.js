@@ -63,4 +63,10 @@ const structureKeys = {
   },
 }
 
-export { languages, urlLangKey, categories, structureKeys, numberMap }
+const desc = {
+  english: "description",
+  arabic: "المعلومات",
+  kurdish: "زانیاری",
+}
+
+export { languages, urlLangKey, categories, structureKeys, numberMap, desc }

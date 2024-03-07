@@ -1,4 +1,10 @@
-import { categories, languages, numberMap, structureKeys } from "@/constants"
+import {
+  categories,
+  desc,
+  languages,
+  numberMap,
+  structureKeys,
+} from "@/constants"
 
 let lang = languages[0].value
 
@@ -25,6 +31,8 @@ const itemFormatter = (obj) => {
   item.image = obj.image
 
   item.label = obj[structureKeys.label[lang]]
+
+  item.descLabel = desc[lang]
 
   item.description = obj[structureKeys.description[lang]]
 

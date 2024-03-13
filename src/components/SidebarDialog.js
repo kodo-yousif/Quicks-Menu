@@ -10,6 +10,7 @@ import "react-photo-view/dist/react-photo-view.css"
 
 export default function SidebarDialog({ item, setSelected }) {
   const [localItem, setLocalItem] = useState(item)
+  const [previewSrc, setPreview] = useState("")
 
   const [_, { dir, value }] = useLanguage()
 
@@ -73,13 +74,16 @@ export default function SidebarDialog({ item, setSelected }) {
                           <div>
                             <div className="relative h-[300px]">
                               <PhotoProvider>
-                                <PhotoView src={localItem?.image}>
+                                <PhotoView src={previewSrc}>
                                   <Image
                                     width={750}
                                     height={750}
                                     alt="food image"
                                     src={localItem?.image}
                                     className="absolute h-full w-full object-cover"
+                                    onLoadingComplete={(img) =>
+                                      setPreview(img.src)
+                                    }
                                   />
                                 </PhotoView>
                               </PhotoProvider>

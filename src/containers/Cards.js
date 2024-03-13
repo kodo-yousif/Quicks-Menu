@@ -8,12 +8,14 @@ import Languages from "@/components/Languages"
 import useLanguage from "@/hooks/useLanguage"
 import CategoryMenu from "@/components/CategoryMenu"
 
-export default function Cards() {
+export default function Cards({ data }) {
   const categories = useData()
 
   const [_, { dir }] = useLanguage()
 
   const [selected, setSelected] = useState(null)
+
+  console.log(data)
 
   return (
     <main

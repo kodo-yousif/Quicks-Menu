@@ -1,7 +1,7 @@
 import Cards from "@/containers/Cards"
 import { addSeconds } from "date-fns"
 
-export const revalidate = 3600
+export const revalidate = 10
 
 let triggers = 0
 let cached = Math.random()

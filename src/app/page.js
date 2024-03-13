@@ -5,16 +5,10 @@ export const revalidate = 10
 
 let triggers = 0
 let cached = Math.random()
-let expireCacheTime = new Date()
 
 async function getData() {
-  if (expireCacheTime < new Date()) {
-    cached = Math.random()
-    triggers++
-    expireCacheTime = addSeconds(new Date(), 5)
-  }
-
-  console.log(triggers)
+  cached = Math.random()
+  triggers++
   return cached
 }
 

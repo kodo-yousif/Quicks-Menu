@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    minimumCacheTTL: 60,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "loremflickr.com",
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig

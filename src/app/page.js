@@ -1,37 +1,33 @@
-"use client"
-import { useState } from "react"
+import Cards from "@/containers/Cards"
+import { addSeconds } from "date-fns"
 
-import useData from "@/hooks/useData"
-import Category from "@/components/Category"
-import Languages from "@/components/Languages"
-import useLanguage from "@/hooks/useLanguage"
-import ImageList from "@/components/ImageList"
-import SidebarDialog from "@/components/SidebarDialog"
-import CategoryMenu from "@/components/CategoryMenu"
+export const revalidate = 3600
 
-export default function Home() {
-  const [selected, setSelected] = useState(null)
+let triggers = 0
+let cached = Math.random()
+let expireCacheTime = new Date()
 
-  const categories = useData()
+async function getData() {
+  if (expireCacheTime < new Date()) {
+    cached = Math.random()
+    triggers++
+    expireCacheTime = addSeconds(new Date(), 5)
+  }
 
-  const [_, { dir }] = useLanguage()
+  console.log(triggers)
+  return cached
+}
 
+export default async function Home() {
+  const data = await getData()
   return (
-    <main
-      dir={dir}
-      className="flex select-none min-h-screen flex-col items-center text-black"
-    >
-      <Languages />
-
-      <CategoryMenu />
-
-      {categories.map(({ items, label, key }) => (
-        <section className="w-full" key={key}>
-          <Category id={key} label={label} />
-          <ImageList setSelected={setSelected} items={items} />
-        </section>
-      ))}
-      <SidebarDialog item={selected} setSelected={setSelected} />
-    </main>
+    <div>
+      <div className="text-center text-black">
+        {triggers}
+        <br />
+        {data}
+      </div>
+      <Cards />
+    </div>
   )
 }

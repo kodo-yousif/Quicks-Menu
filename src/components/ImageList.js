@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image"
 
 export default function ImageList({ items, setSelected }) {
   return (
@@ -9,8 +9,10 @@ export default function ImageList({ items, setSelected }) {
       {items.map((item) => (
         <li key={item.key} className="relative ">
           <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-            <img
+            <Image
               alt="food"
+              width={750}
+              height={750}
               src={item.image}
               className=" pointer-events-none object-cover h-full"
             />

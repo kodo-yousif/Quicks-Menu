@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image"
 import { Fragment, useEffect, useState } from "react"
 import { PhotoProvider, PhotoView } from "react-photo-view"
 
@@ -74,7 +74,9 @@ export default function SidebarDialog({ item, setSelected }) {
                             <div className="relative h-[300px]">
                               <PhotoProvider>
                                 <PhotoView src={localItem?.image}>
-                                  <img
+                                  <Image
+                                    width={750}
+                                    height={750}
                                     alt="food image"
                                     src={localItem?.image}
                                     className="absolute h-full w-full object-cover"

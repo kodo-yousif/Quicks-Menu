@@ -1,8 +1,8 @@
 import useLanguage from "./useLanguage"
 import getFormattedData from "@/util/getFormattedData"
 
-export default function useData() {
+export default function useData(data) {
   const [lang] = useLanguage()
 
-  return getFormattedData(lang)
+  return getFormattedData(lang, data)
 }

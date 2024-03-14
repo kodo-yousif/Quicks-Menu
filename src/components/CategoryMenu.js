@@ -2,18 +2,14 @@ import { Fragment } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
 
-import useData from "@/hooks/useData"
 import classNames from "@/util/classNames"
 import useLanguage from "@/hooks/useLanguage"
 
-export default function CategoryMenu() {
-  const categories = useData()
+export default function CategoryMenu({ categories }) {
   const [_, { dir }] = useLanguage()
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id)
-    console.log(element)
-    console.log(element.getBoundingClientRect())
     if (element) {
       const { top } = element.getBoundingClientRect()
       window.scrollTo({
@@ -28,10 +24,10 @@ export default function CategoryMenu() {
     <Menu
       as="div"
       dir={dir}
-      className="fixed ltr:right-4 rtl:left-4 rtl:md:left-5 top-5 ltr:md:right-5 inline-block ltr:text-left rtl:text-righst z-10"
+      className="fixed rtl:right-4 ltr:left-4 ltr:md:left-5 top-5 rtl:md:right-5 inline-block ltr:text-left z-10"
     >
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
           {({ open }) => (
             <ChevronDownIcon
               aria-hidden="true"
@@ -53,18 +49,19 @@ export default function CategoryMenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute ltr:right-0 rtl:left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+        <Menu.Items className="absolute rtl:right-0 ltr:left-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1 w-full">
             {categories.map(({ key, label }) => (
-              <Menu.Item key={key}>
-                <span
-                  onClick={() => scrollToSection(key)}
-                  className={
-                    "block cursor-pointer px-4 py-2 text-sm text-gray-700"
-                  }
-                >
-                  {label}
-                </span>
+              <Menu.Item
+                key={key}
+                className="w-full cursor-pointer"
+                onClick={() => scrollToSection(key)}
+              >
+                <div>
+                  <div className="block w-max cursor-pointer px-4 py-2 text-sm text-gray-700">
+                    {label}
+                  </div>
+                </div>
               </Menu.Item>
             ))}
           </div>

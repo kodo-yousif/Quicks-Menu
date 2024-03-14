@@ -111,18 +111,29 @@ export default function SidebarDialog({ item, setSelected }) {
                             </div>
                           </div>
                         </div>
-                        <div className="px-4 pb-5 pt-5 sm:px-0 sm:pt-0">
-                          <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
-                            <div>
-                              <dt className="capitalize font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                                {localItem?.descLabel}
-                              </dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                <p>{localItem?.description}</p>
-                              </dd>
-                            </div>
-                          </dl>
-                        </div>
+                        {localItem?.description && (
+                          <div className="px-4 pb-5 pt-5 sm:px-0 sm:pt-0">
+                            <dl className="space-y-8 sm:space-y-6 sm:px-6">
+                              <div>
+                                <dt className="capitalize font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                                  {localItem?.descLabel}
+                                </dt>
+                                <dd className="mt-1 flex flex-wrap gap-2 md:gap-3 text-sm text-gray-900 sm:col-span-2">
+                                  {localItem?.description
+                                    .split("+")
+                                    .map((desc) => (
+                                      <div
+                                        className="bg-red-500 text-white capitalize py-1 px-2 rounded"
+                                        key={desc}
+                                      >
+                                        {desc.trim()}
+                                      </div>
+                                    ))}
+                                </dd>
+                              </div>
+                            </dl>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

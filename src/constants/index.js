@@ -1,5 +1,3 @@
-import mockData from "./mockData.json"
-
 const languages = [
   { value: "english", label: "English", dir: "ltr" },
   { value: "arabic", label: "العربية", dir: "rtl" },
@@ -21,35 +19,6 @@ const numberMap = {
   9: "٩",
 }
 
-// import { faker, fakerAR } from "@faker-js/faker"
-
-let categories = []
-
-categories = mockData
-
-// for (let index = 0; index < 6; index++) {
-//   const items = []
-
-//   for (let idx = 0; idx < 21; idx++) {
-//     items.push({
-//       price: 12000,
-//       image: faker.image.urlLoremFlickr({ category: "food" }),
-//       arabicName: fakerAR.person.firstName(),
-//       arabicDesc: fakerAR.commerce.productDescription(),
-//       englishName: faker.person.firstName(),
-//       kurdishName: fakerAR.person.firstName(),
-//       englishDesc: faker.commerce.productDescription(),
-//       kurdishDesc: fakerAR.commerce.productDescription(),
-//     })
-//   }
-//   categories.push({
-//     items,
-//     english: faker.person.firstName(),
-//     arabic: fakerAR.person.firstName(),
-//     kurdish: fakerAR.person.firstName(),
-//   })
-// }
-
 const structureKeys = {
   label: {
     arabic: "arabicName",
@@ -64,9 +33,9 @@ const structureKeys = {
 }
 
 const desc = {
-  english: "description",
-  arabic: "المعلومات",
-  kurdish: "زانیاری",
+  english: "Ingredients",
+  arabic: "مكونات",
+  kurdish: "پێکهاتەکان",
 }
 
-export { languages, urlLangKey, categories, structureKeys, numberMap, desc }
+export { languages, urlLangKey, structureKeys, numberMap, desc }

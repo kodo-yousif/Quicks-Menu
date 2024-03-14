@@ -9,13 +9,11 @@ import useLanguage from "@/hooks/useLanguage"
 import CategoryMenu from "@/components/CategoryMenu"
 
 export default function Cards({ data }) {
-  const categories = useData()
+  const categories = useData(data)
 
   const [_, { dir }] = useLanguage()
 
   const [selected, setSelected] = useState(null)
-
-  console.log(data)
 
   return (
     <main
@@ -24,7 +22,7 @@ export default function Cards({ data }) {
     >
       <Languages />
 
-      <CategoryMenu />
+      <CategoryMenu categories={categories} />
 
       {categories.map(({ items, label, key }) => (
         <section className="w-full" key={key}>

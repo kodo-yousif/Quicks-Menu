@@ -1,10 +1,4 @@
-import {
-  categories,
-  desc,
-  languages,
-  numberMap,
-  structureKeys,
-} from "@/constants"
+import { desc, languages, numberMap, structureKeys } from "@/constants"
 
 let lang = languages[0].value
 
@@ -28,13 +22,16 @@ const itemFormatter = (obj) => {
 
   item.key = obj.englishName + idx
 
-  item.image = obj.image
+  item.image = "https://loremflickr.com/640/480/food?lock=1551499121393664"
+  // item.image = obj.image
 
   item.label = obj[structureKeys.label[lang]]
 
   item.descLabel = desc[lang]
 
-  item.description = obj[structureKeys.description[lang]]
+  if (obj[structureKeys.description[lang]])
+    item.description = obj[structureKeys.description[lang]]
+  else item.description = obj[structureKeys.description.english]
 
   return item
 }
@@ -51,7 +48,7 @@ const categoryFormatter = (obj) => {
   return category
 }
 
-export default function getFormattedData(selectedLang) {
+export default function getFormattedData(selectedLang, categories) {
   lang = selectedLang
   return categories.map(categoryFormatter)
 }

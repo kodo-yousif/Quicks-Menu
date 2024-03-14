@@ -4,9 +4,6 @@ import { collection, getDocs } from "firebase/firestore"
 
 export const revalidate = 7200
 
-let triggers = 0
-let cached = Math.random()
-
 async function getData() {
   const categories = {}
   const categoriesId = []
@@ -23,24 +20,17 @@ async function getData() {
       categories[item.categoryId].items.push(item)
   })
 
-  cached = Math.random()
-  triggers++
-
   const data = []
 
   categoriesId.forEach((id) => data.push(categories[id]))
-  return [data, cached]
+
+  return data
 }
 
 export default async function Home() {
-  const [data, cached] = await getData()
+  const data = await getData()
   return (
-    <div>
-      <div className="text-center text-black">
-        {triggers}
-        <br />
-        {cached}
-      </div>
+    <div className="pb-6">
       <Cards data={data} />
     </div>
   )

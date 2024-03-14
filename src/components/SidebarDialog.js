@@ -78,6 +78,7 @@ export default function SidebarDialog({ item, setSelected }) {
                                   <Image
                                     width={750}
                                     height={750}
+                                    quality={40}
                                     alt="food image"
                                     src={localItem?.image}
                                     className="absolute h-full w-full object-cover"

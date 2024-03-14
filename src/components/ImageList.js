@@ -12,6 +12,7 @@ export default function ImageList({ items, setSelected }) {
             <Image
               alt="food"
               width={750}
+              quality={40}
               height={750}
               src={item.image}
               className=" pointer-events-none object-cover h-full"

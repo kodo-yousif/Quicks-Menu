@@ -22,8 +22,7 @@ const itemFormatter = (obj) => {
 
   item.key = obj.englishName + idx
 
-  item.image = "https://loremflickr.com/640/480/food?lock=1551499121393664"
-  // item.image = obj.image
+  item.image = obj.image
 
   item.label = obj[structureKeys.label[lang]]
 

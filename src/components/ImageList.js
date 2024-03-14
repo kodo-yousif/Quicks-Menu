@@ -8,14 +8,14 @@ export default function ImageList({ items, setSelected }) {
     >
       {items.map((item) => (
         <li key={item.key} className="relative ">
-          <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+          <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100">
             <Image
-              alt="food"
               width={750}
               quality={40}
               height={750}
               src={item.image}
-              className=" pointer-events-none object-cover h-full"
+              alt={item?.label}
+              className="text-center text-black pointer-events-none object-cover h-full"
             />
             <button
               type="button"

@@ -59,7 +59,7 @@ export default function SidebarDialog({ item, setSelected }) {
                           <button
                             type="button"
                             onClick={() => setSelected(null)}
-                            className="relative rounded-md bg-white text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="relative rounded-md bg-white text-gray-400 focus:outline-none"
                           >
                             <span className="absolute -inset-2.5" />
                             <span className="sr-only">Close panel</span>
@@ -79,9 +79,9 @@ export default function SidebarDialog({ item, setSelected }) {
                                     width={750}
                                     height={750}
                                     quality={40}
-                                    alt="food image"
+                                    alt={localItem?.label}
                                     src={localItem?.image}
-                                    className="absolute h-full w-full object-cover"
+                                    className="absolute text-black text-center h-full w-full object-cover"
                                     onLoadingComplete={(img) =>
                                       setPreview(img.src)
                                     }

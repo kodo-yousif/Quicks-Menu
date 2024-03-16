@@ -78,7 +78,7 @@ export default function SidebarDialog({ item, setSelected }) {
                                   <Image
                                     width={750}
                                     height={750}
-                                    quality={40}
+                                    quality={55}
                                     alt={localItem?.label}
                                     src={localItem?.image}
                                     className="absolute text-black text-center h-full w-full object-cover"

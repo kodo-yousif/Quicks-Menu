@@ -11,7 +11,7 @@ export default function ImageList({ items, setSelected }) {
           <div className="group aspect-square block w-full overflow-hidden rounded-lg bg-gray-100">
             <Image
               width={750}
-              quality={40}
+              quality={55}
               height={750}
               src={item.image}
               alt={item?.label}
